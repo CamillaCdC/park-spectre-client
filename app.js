@@ -12,8 +12,8 @@ function GetMap() {
     .get(url)
     .then(results => {
         // shows all bay information
-        console.log("all results:")
-        console.log(results);
+        // console.log("all results:")
+        // console.log(results);
         results.data.forEach((result, index) => {
             addPin(map, result, index);
         }); 
@@ -33,7 +33,8 @@ var pin = new Microsoft.Maps.Pushpin(
     // var pushpinClicked = 
     pin.metadata = {
         title: result.description1,
-        latlong: `${result.lat} ${result.lon}`  
+        latlong: `${result.lat} ${result.lon}`,
+        status: `${result.status}`  
     };
     // Microsoft.Maps.Events.addHandler(pin, 'mouseover', function (e) {
     //     e.target.setOptions({ 
@@ -54,7 +55,7 @@ var pin = new Microsoft.Maps.Pushpin(
             infobox.setOptions({
                 location: e.target.getLocation(),
                 title: e.target.metadata.title,
-                description: e.target.metadata.latlong,
+                description: e.target.metadata.status,
                 visible: true
             });        
             
